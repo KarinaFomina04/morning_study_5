@@ -2,9 +2,19 @@
   padding: 30px;
   display: flex;
 }
-.active-filter {
+
+.activeFilter {
   background-color: deepskyblue;
 }
-.in-cart {
+
+.inCart {
   opacity: 0.5;
+}
+
+.goodPrice {
+  color: green;
+}
+
+.badPrice {
+  color: red;
 }

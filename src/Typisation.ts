@@ -1,5 +1,5 @@
 export type ThingsToBuyPropsType = {
-    id: number,
+    id: string,
     title: string,
     expectedPrice: string,
     realPrice: string,
@@ -9,8 +9,14 @@ export type ThingsToBuyPropsType = {
 export type ShopListPropsType = {
     title: string
     whatToBuy: ThingsToBuyPropsType[]
-    deleteItemShop: (id: number) => void
-    changeFilter: (newFilterValue: FilterType) => void
+    deleteItemShop: (id: string) => void
+    changeFilter: (newFilterValue:FilterType)=>void
+    addtask:(newTitle:string)=> void
+    changeCardStatus: (itemId: string, inCartStatus: boolean)=>void
+    filter:FilterType;
 }
 
-export type FilterType = "all" | "buy" | "not buy";
+export type FilterType = "all" | "buy" | "not buy"
+
+
+
