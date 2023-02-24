@@ -49,25 +49,16 @@ export const ShopList = (props: ShopListPropsType) => {
             <ol>
                 {props.whatToBuy.map((item) => {
 
-                    const colorPriceExpected = () => {
-                        return item.expectedPrice <= item.realPrice
-                            ? s.goodPrice
-                            : s.badPrice
-                    }
-
-                    const colorPriceReal = () => {
-                        return item.expectedPrice >= item.realPrice
-                                ? s.goodPrice
-                                : s.badPrice
-                    }
-
+                    const colorPrice = item.realPrice > item.expectedPrice
+                        ? s.badPrice
+                        : s.goodPrice
 
                     return (
                         <li key={item.id} className={item.inCart ? "" : s.inCart}>
                             <div><b>{item.title}</b>
                                 <button onClick={() => { props.deleteItemShop(item.id) }}> -x- </button></div>
-                            <div className={colorPriceExpected()}>{'expected price: ' + item.expectedPrice}</div>
-                            <div className={colorPriceReal()}>{'real price: ' + item.realPrice}</div>
+                            <div className={colorPrice}>{'expected price: ' + item.expectedPrice}</div>
+                            <div className={colorPrice}>{'real price: ' + item.realPrice}</div>
                             <span>in basket: </span>
                             <input type={"checkbox"} checked={item.inCart} onChange={(event) => props.changeCardStatus(item.id, event.currentTarget.checked)} />
                         </li>
@@ -77,9 +68,16 @@ export const ShopList = (props: ShopListPropsType) => {
                 }
             </ol>
             <div>
-                <button className={props.filter === "all" ? s.activeFilter : ""} onClick={() => onclickHandler("all")}>all</button>
+                {/* <button className={props.filter === "all" ? s.activeFilter : ""} onClick={() => onclickHandler("all")}>all</button>
                 <button className={props.filter === "buy" ? s.activeFilter : ""} onClick={() => onclickHandler("buy")}>buy</button>
-                <button className={props.filter === "not buy" ? s.activeFilter : ""} onClick={() => onclickHandler("not buy")}>not buy</button>
+                <button className={props.filter === "not buy" ? s.activeFilter : ""} onClick={() => onclickHandler("not buy")}>not buy</button> */}
+
+                {props.buttonsFilter.map(el => {
+                    return (
+                        <button className={el.filterButtonValue === props.filter? s.activeFilter : ""} onClick={() => onclickHandler(el.filterButtonValue)}>{el.title}</button>
+                    )
+                })
+                }
             </div>
         </div>
     );
